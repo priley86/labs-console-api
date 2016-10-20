@@ -1,0 +1,732 @@
+swagger: '2.0'
+
+info:
+  version: "0.1.0"
+  title: Red Hat Open Innovation Labs Console API
+  description: "A generic model to support automation at all levels of the application and infrastructure lifecycle."
+  contact:
+    name: "Red Hat Open Innovation Labs"
+    url: "https://github.com/rht-labs/api-design"
+    email: "rhc-open-innovation-labs@redhat.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+
+paths:
+  /users:
+    get:
+      tags:
+      - users
+      description: |
+        Gets `User` objects.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Users
+            type: array
+            items:
+              $ref: "#/definitions/User"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    post:
+      tags:
+        - user
+      summary: Add a new user
+      description: ""
+      operationId: addUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: User object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        201:
+          description: Created
+        400:
+          description: Invalid input
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /users/{id}:
+    get:
+      tags:
+      - user
+      description: |
+        Gets a `User` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: User ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/User"
+        400:
+          description: Invalid input
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    put:
+      tags:
+        - user
+      summary: Update an existing user
+      description: ""
+      operationId: updateUser
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: User ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: User object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        200:
+          description: User successfully updated
+        405:
+          description: Validation exception
+        404:
+          description: User not found
+        400:
+          description: Invalid ID supplied
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    delete:
+      tags:
+        - user
+      summary: Deletes a user
+      description: ""
+      operationId: deleteUser
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: User id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Invalid user value
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /topologies:
+    get:
+      tags:
+      - topology
+      description: |
+        Gets `Toplogy` objects.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Toplogies
+            type: array
+            items:
+              $ref: "#/definitions/ApplicationTopology"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    post:
+      tags:
+        - topology
+      summary: Add a new topology
+      description: ""
+      operationId: addTopology
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Toplogy object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/ApplicationTopology"
+      responses:
+        201:
+          description: Created
+        400:
+          description: Invalid input
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /topologies/{id}:
+    get:
+      tags:
+      - topology
+      description: |
+        Gets a `Topology` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Topology ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/ApplicationTopology"
+    put:
+      tags:
+        - topology
+      summary: Update an existing topology
+      description: ""
+      operationId: updateTopology
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: Topology ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: Topology object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/ApplicationTopology"
+      responses:
+        200:
+          description: User successfully updated
+        405:
+          description: Validation exception
+        404:
+          description: User not found
+        400:
+          description: Invalid ID supplied
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    delete:
+      tags:
+        - topology
+      summary: Deletes a topology
+      description: ""
+      operationId: deleteTopology
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: Topology id to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Invalid user value
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+  /builds:
+    get:
+      tags:
+      - build
+      description: |
+        Gets `Build` objects.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: Toplogies
+            type: array
+            items:
+              $ref: "#/definitions/ApplicationTopology"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    post:
+      tags:
+        - build
+      summary: Add a new build
+      description: ""
+      operationId: addBuild
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Build object that needs to be added to the store
+          required: false
+          schema:
+            type: object
+            required:
+            - topologyId
+            properties:
+              topologyId:
+                type: integer
+      responses:
+        201:
+          description: Created
+        400:
+          description: Invalid input
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /builds/{id}:
+    get:
+      tags:
+      - build
+      description: |
+        Gets a `Build` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: Build ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/Build"
+
+  /ImageStream:
+    get:
+      tags:
+      - imageStream
+      description: |
+        Gets `ImageStream` objects.
+      responses:
+        200:
+          description: Successful response
+          schema:
+            title: ImageStream
+            type: array
+            items:
+              $ref: "#/definitions/ImageStream"
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    post:
+      tags:
+        - imageStream
+      summary: Add a new imageStream
+      description: ""
+      operationId: addImageStream
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: ImageStream object that needs to be added to the store
+          required: false
+          schema:
+            $ref: "#/definitions/ImageStream"
+      responses:
+        201:
+          description: Created
+        400:
+          description: Invalid input
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+  /imageStream/{id}:
+    get:
+      tags:
+      - imageStream
+      description: |
+        Gets a `ImageStream` object by ID.
+      parameters:
+        -
+          name: id
+          in: path
+          description: ImageStream ID
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: "#/definitions/ImageStream"
+        400:
+          description: Invalid input
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    put:
+      tags:
+        - imageStream
+      summary: Update an existing imageStream
+      description: ""
+      operationId: updateImageStream
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        -
+          name: id
+          in: path
+          description: ImageStream ID
+          required: true
+          type: integer
+          format: int64
+        - in: body
+          name: body
+          description: ImageStream object that needs to be updated in the store
+          required: false
+          schema:
+            $ref: "#/definitions/ImageStream"
+      responses:
+        200:
+          description: User successfully updated
+        405:
+          description: Validation exception
+        404:
+          description: ImageStream not found
+        400:
+          description: Invalid ID supplied
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+    delete:
+      tags:
+        - imageStream
+      summary: Deletes an imageStream
+      description: ""
+      operationId: deleteImageStream
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: id
+          description: ImageStream to delete
+          required: true
+          type: integer
+          format: int64
+      responses:
+        200:
+          description: Successful response
+        400:
+          description: Invalid user value
+        default:
+          description: Unexpected error
+          schema:
+            $ref: '#/definitions/ErrorModel'
+
+definitions:
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      first_name:
+        type: string
+      last_name:
+        type: string
+      user_name:
+        type: string
+      password:
+        type: string
+      email:
+        type: string
+      ssh_public_key:
+        type: string
+    required:
+    - id
+    - first_name
+    - last_name
+    - user_name
+    - password
+    - email
+  ApplicationTopology:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      project_templates:
+        type: array
+        items:
+           $ref: "#/definitions/ProjectTemplate"
+      version:
+        description: 'application topology version'
+        type: integer
+        format: int64
+      datetime_created:
+        type: string
+        format: date-time
+      datetime_modified:
+        type: string
+        format: date-time
+  ProjectTemplate:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      apps:
+        type: array
+        items:
+          $ref: "#/definitions/ApplicationTemplate"
+      persistent_volume_claim_templates:
+        type: array
+        items:
+          $ref: '#/definitions/PersistentVolumeClaimTemplate'
+    required:
+    - name
+  PersistentVolumeClaimTemplate:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      access_modes:
+        type: array
+        items:
+          type: string
+          enum:
+          - ReadWriteOnce
+          - ReadOnlyMany
+          - ReadWriteMany
+      storage:
+        type: integer
+        format: int64
+      selector:
+        $ref: '#/definitions/LabelSelectorTemplate'
+  LabelSelectorTemplate:
+    type: object
+    properties:
+      match_label_templates:
+        type: object
+        additionalProperties:
+          type: string
+  ApplicationTemplate:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      base_image:
+        type: string
+      base_image_tag:
+        type: string
+      build_application_commands:
+        type: array
+        items:
+          type: string
+      build_tool:
+        type: string
+        enum:
+          - s2i
+          - 'mvn-3'
+          - 'node-4'
+          - 'node-0.10'
+          - sh
+      build_image_commands:
+        type: array
+        items:
+          type: string
+      deploy_image_commands:
+        type: array
+        items:
+          type: string
+      context_dir:
+        type: string
+      scm_url:
+        type: string
+      scm_type:
+        type: string
+      scm_ref:
+        type: string
+      name:
+        type: string
+      label_templates:
+        type: object
+        additionalProperties:
+          type: string
+      environment_variables_templates:
+        type: object
+        additionalProperties:
+          type: string
+      pvc_association_templates:
+        type: array
+        items:
+          $ref: '#/definitions/PVCAssociationTemplate'
+      routes:
+        type: array
+        items:
+          $ref: '#/definitions/Route'
+  PVCAssociationTemplate:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name_template:
+        type: string
+      mount_path:
+        type: string
+      claim_type:
+        $ref: '#/definitions/ClaimType'
+  ClaimType:
+    type: object
+    properties:
+      kind:
+        type: string
+        enum:
+        - secret
+        - claim
+      name_template:
+        type: string
+  Route:
+    type: object
+    discriminator: route_type
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      route_type:
+        type: string
+        enum:
+        - edge
+        - passthrough
+        - reencrypt
+        - default
+      hostname:
+        type: string
+      port:
+        type: integer
+        format: int
+      service:
+        $ref: '#/definitions/Service'
+    required:
+    - route_type
+  Build:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      topology_id:
+        type: integer
+        format: int64
+      topology_version:
+        type: integer
+        format: int64
+      ansible_tower_link:
+        type: string
+      datetime_started:
+        type: string
+        format: date-time
+      status:
+        type: string
+  ImageStream:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      image_tags:
+        type: array
+        items:
+          type: string
+  Service:
+    type: object
+    properties:
+      name:
+        type: string
+      ports:
+        type: array
+        items:
+          $ref: '#/definitions/Port'
+  Port:
+    type: object
+    properties:
+      port:
+        type: integer
+        format: int
+      protocol:
+        type: string
+      target_port:
+        type: integer
+        format: int
+    required:
+    - port
+    - protocol
+    - target_port
+  ErrorModel:
+    type: object
+    required:
+    - message
+    - code
+    properties:
+      message:
+        type: string
+      code:
+        type: integer
+        minimum: 100
+        maximum: 600
