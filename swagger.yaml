@@ -3,10 +3,10 @@ swagger: '2.0'
 info:
   version: "0.1.0"
   title: Red Hat Open Innovation Labs Console API
-  description: "A generic model to support automation at all levels of the application and infrastructure lifecycle."
+  description: "Specification for interaction between the Labs Console front-end and back-end. Additionally, this API will be used to experiment with new concepts in order to allow the Automation API (https://github.com/rht-labs/automation-api) to remain stable."
   contact:
     name: "Red Hat Open Innovation Labs"
-    url: "https://github.com/rht-labs/api-design"
+    url: "https://github.com/rht-labs/labs-console-api"
     email: "rhc-open-innovation-labs@redhat.com"
   license:
     name: "Apache 2.0"
@@ -16,7 +16,7 @@ paths:
   /users:
     get:
       tags:
-      - users
+      - user
       description: |
         Gets `User` objects.
       responses:
@@ -505,6 +505,10 @@ definitions:
         type: array
         items:
            $ref: "#/definitions/ProjectTemplate"
+      promotion_process:
+        type: array
+        items:
+           $ref: "#/definitions/Stage"
       version:
         description: 'application topology version'
         type: integer
@@ -515,6 +519,43 @@ definitions:
       datetime_modified:
         type: string
         format: date-time
+  Stage: 
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      index:
+        type: integer
+        format: int64
+      project_role_bindings:
+        type: array
+        items:
+          $ref: "#/definitions/RoleBinding"
+      application_promoters:
+        type: array
+        items:
+          type: string
+  RoleBinding:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      user:
+        type: string
+      role:
+        type: string
+        enum:
+        - admin
+        - view
+        - basic-user
+        - edit
+    required:
+    - user
+    - role
   ProjectTemplate:
     type: object
     properties:
