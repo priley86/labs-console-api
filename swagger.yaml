@@ -338,7 +338,7 @@ paths:
           schema:
             $ref: "#/definitions/Build"
 
-  /ImageStream:
+  /imageStreams:
     get:
       tags:
       - imageStream
@@ -382,7 +382,7 @@ paths:
           description: Unexpected error
           schema:
             $ref: '#/definitions/ErrorModel'
-  /imageStream/{id}:
+  /imageStreams/{id}:
     get:
       tags:
       - imageStream
