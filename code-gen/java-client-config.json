@@ -1,0 +1,7 @@
+{
+    "apiPackage" : "com.rhc.labs.console",
+    "artifactId" : "labs-console-api-client",
+    "artifactVersion" : "0.1.0",
+    "groupId" : "com.rhc",
+    "modelPackage" : "com.rhc.labs.console.model"
+}
