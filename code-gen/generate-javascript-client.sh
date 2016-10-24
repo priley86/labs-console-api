@@ -8,5 +8,5 @@ else
     wget http://repo1.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.1/swagger-codegen-cli-2.2.1.jar -O swagger-codegen-cli.jar
 fi
 
-rm -rf target/nodejs-server/
-java -jar swagger-codegen-cli.jar generate -l nodejs-server -i ../swagger.yaml -o target/nodejs-server/
+rm -rf target/javascript/
+java -jar swagger-codegen-cli.jar generate -l javascript -i ../swagger.yaml  -o target/javascript/
