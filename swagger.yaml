@@ -279,10 +279,10 @@ paths:
         200:
           description: Successful response
           schema:
-            title: Toplogies
+            title: Builds
             type: array
             items:
-              $ref: "#/definitions/ApplicationTopology"
+              $ref: "#/definitions/Build"
         default:
           description: Unexpected error
           schema:
@@ -519,6 +519,10 @@ definitions:
       datetime_modified:
         type: string
         format: date-time
+      name:
+        type: string
+      description:
+        type: string
   Stage: 
     type: object
     properties:
@@ -537,7 +541,7 @@ definitions:
       application_promoters:
         type: array
         items:
-          type: string
+          $ref: '#/definitions/User'
   RoleBinding:
     type: object
     properties:
@@ -545,7 +549,7 @@ definitions:
         type: integer
         format: int64
       user:
-        type: string
+        $ref: '#/definitions/User'
       role:
         type: string
         enum:
@@ -710,12 +714,8 @@ definitions:
       id:
         type: integer
         format: int64
-      topology_id:
-        type: integer
-        format: int64
-      topology_version:
-        type: integer
-        format: int64
+      topology:
+        $ref: '#/definitions/ApplicationTopology'
       ansible_tower_link:
         type: string
       datetime_started:
