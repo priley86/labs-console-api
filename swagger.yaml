@@ -568,6 +568,15 @@ definitions:
         format: int64
       name:
         type: string
+      type:
+        type: string
+        enum:
+          - 'OpenShift'
+          - 'OpenStack'
+          - 'AWS'
+          - 'Google Cloud'
+          - 'Azure'
+          - 'VMWare'
       apps:
         type: array
         items:
