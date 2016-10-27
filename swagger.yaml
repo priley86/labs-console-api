@@ -576,6 +576,7 @@ definitions:
           - 'AWS'
           - 'Google Cloud'
           - 'Azure'
+          - 'RHEV'
           - 'VMWare'
       apps:
         type: array
