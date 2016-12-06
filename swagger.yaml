@@ -726,6 +726,15 @@ definitions:
         format: int64
       topology:
         $ref: '#/definitions/ApplicationTopology'
+      topology_version:
+        type: integer
+        format: int64
+      num_projects:
+        type: integer
+        format: int64
+      num_stages:
+        type: integer
+        format: int64
       ansible_tower_link:
         type: string
       datetime_started:
