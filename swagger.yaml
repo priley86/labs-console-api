@@ -392,6 +392,10 @@ definitions:
         type: string
       description:
         type: string
+      engagement_id:
+        description: 'the Automation API enagagement reference'
+        type: integer
+        format: int64
   Stage: 
     type: object
     properties:
@@ -436,6 +440,8 @@ definitions:
         type: integer
         format: int64
       name:
+        type: string
+      display_name:
         type: string
       type:
         type: string
